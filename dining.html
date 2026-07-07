@@ -1,0 +1,2017 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Dining at Simma Hotel – Himalayan Cuisine & Bar</title>
+    <meta name="description" content="Experience the finest Himalayan cuisine at Simma Hotel Restaurant & Bar in Darjeeling. Signature dishes, handcrafted cocktails, and breathtaking mountain views."/>
+    <link rel="canonical" href="https://simmahotel.com/dining"/>
+
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;0,700;1,400&family=Inter:wght@300;400;500;600;700&family=Cinzel:wght@400;600;700&display=swap" rel="stylesheet">
+
+    <style>
+        /* ============================================
+           FULL STYLES – Dining Focus
+           ============================================ */
+        :root {
+            --black: #0a0a0a;
+            --matte-black: #121212;
+            --gold: #c9a84c;
+            --gold-light: #e8d5a3;
+            --gold-glow: rgba(201, 168, 76, 0.3);
+            --champagne: #f5efe0;
+            --emerald: #1a4a3a;
+            --mist-white: #f8f6f0;
+            --warm-wood: #8b6f4c;
+            --glass-bg: rgba(255, 255, 255, 0.04);
+            --glass-border: rgba(255, 255, 255, 0.08);
+            --shadow-soft: 0 20px 60px rgba(0, 0, 0, 0.6);
+            --shadow-gold: 0 0 40px rgba(201, 168, 76, 0.15);
+            --font-heading: 'Playfair Display', serif;
+            --font-body: 'Inter', sans-serif;
+            --font-accent: 'Cinzel', serif;
+            --transition: 0.6s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        *,
+        *::before,
+        *::after {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        html {
+            scroll-behavior: smooth;
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) var(--matte-black);
+        }
+        ::-webkit-scrollbar {
+            width: 6px;
+        }
+        ::-webkit-scrollbar-track {
+            background: var(--matte-black);
+        }
+        ::-webkit-scrollbar-thumb {
+            background: var(--gold);
+            border-radius: 10px;
+        }
+        body {
+            font-family: var(--font-body);
+            background: var(--matte-black);
+            color: var(--mist-white);
+            overflow-x: hidden;
+            line-height: 1.6;
+        }
+        a {
+            text-decoration: none;
+            color: inherit;
+        }
+        img {
+            max-width: 100%;
+            display: block;
+        }
+        ul {
+            list-style: none;
+        }
+        .container {
+            max-width: 1280px;
+            margin: 0 auto;
+            padding: 0 24px;
+        }
+
+        /* ========== LOADING ========== */
+        #loader {
+            position: fixed;
+            inset: 0;
+            z-index: 9999;
+            background: var(--black);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            transition: opacity 1.2s ease, visibility 1.2s ease;
+        }
+        #loader.hidden {
+            opacity: 0;
+            visibility: hidden;
+            pointer-events: none;
+        }
+        .loader-logo {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            background: url('https://i.pinimg.com/736x/44/86/a1/4486a1096891eb15f0834aad140df40e.jpg') center/cover no-repeat;
+            box-shadow: 0 0 60px rgba(201, 168, 76, 0.25);
+            animation: pulse-logo 1.8s ease-in-out infinite;
+            margin-bottom: 30px;
+        }
+        @keyframes pulse-logo {
+            0%,
+            100% {
+                transform: scale(1);
+                box-shadow: 0 0 60px rgba(201, 168, 76, 0.2);
+            }
+            50% {
+                transform: scale(1.05);
+                box-shadow: 0 0 100px rgba(201, 168, 76, 0.4);
+            }
+        }
+        .loader-text {
+            font-family: var(--font-accent);
+            font-size: 14px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            margin-bottom: 24px;
+            opacity: 0.8;
+        }
+        .loader-bar-track {
+            width: 200px;
+            height: 2px;
+            background: rgba(255, 255, 255, 0.08);
+            border-radius: 4px;
+            overflow: hidden;
+            position: relative;
+        }
+        .loader-bar-fill {
+            height: 100%;
+            width: 0%;
+            background: linear-gradient(90deg, var(--gold), var(--gold-light));
+            border-radius: 4px;
+            transition: width 0.1s linear;
+            box-shadow: 0 0 20px var(--gold-glow);
+        }
+        .loader-percent {
+            font-family: var(--font-accent);
+            font-size: 13px;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-top: 14px;
+        }
+
+        /* ========== CURSOR ========== */
+        #cursor-glow {
+            position: fixed;
+            width: 300px;
+            height: 300px;
+            border-radius: 50%;
+            background: radial-gradient(circle, rgba(201, 168, 76, 0.07) 0%, transparent 70%);
+            pointer-events: none;
+            z-index: 9998;
+            transform: translate(-50%, -50%);
+            transition: opacity 0.4s ease;
+            will-change: transform;
+        }
+
+        /* ========== NAVBAR ========== */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 1000;
+            padding: 16px 0;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+            background: transparent;
+        }
+        .navbar.scrolled {
+            background: rgba(10, 10, 10, 0.92);
+            backdrop-filter: blur(18px) saturate(1.4);
+            border-bottom: 1px solid rgba(201, 168, 76, 0.12);
+            padding: 10px 0;
+        }
+        .navbar.hidden-nav {
+            transform: translateY(-100%);
+        }
+        .navbar .container {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .nav-logo {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            cursor: pointer;
+        }
+        .nav-logo img {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(201, 168, 76, 0.25);
+        }
+        .nav-logo span {
+            font-family: var(--font-accent);
+            font-size: 18px;
+            letter-spacing: 2px;
+            color: var(--gold-light);
+        }
+        .nav-links {
+            display: flex;
+            align-items: center;
+            gap: 32px;
+        }
+        .nav-links a {
+            font-size: 13px;
+            font-weight: 500;
+            letter-spacing: 1px;
+            text-transform: uppercase;
+            color: rgba(255, 255, 255, 0.7);
+            transition: color 0.3s ease;
+            position: relative;
+            cursor: pointer;
+        }
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            bottom: -4px;
+            left: 0;
+            width: 0;
+            height: 1px;
+            background: var(--gold);
+            transition: width 0.4s ease;
+        }
+        .nav-links a:hover {
+            color: var(--gold-light);
+        }
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+        .nav-links a.active {
+            color: var(--gold-light);
+        }
+        .nav-links a.active::after {
+            width: 100%;
+        }
+        .nav-cta {
+            background: var(--gold);
+            color: var(--black) !important;
+            padding: 8px 24px;
+            border-radius: 40px;
+            font-weight: 600 !important;
+            transition: all 0.3s ease !important;
+        }
+        .nav-cta::after {
+            display: none !important;
+        }
+        .nav-cta:hover {
+            background: var(--gold-light);
+            transform: scale(1.04);
+            box-shadow: 0 0 30px var(--gold-glow);
+        }
+        .nav-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            background: none;
+            border: none;
+            padding: 4px;
+        }
+        .nav-toggle span {
+            width: 26px;
+            height: 2px;
+            background: var(--mist-white);
+            transition: all 0.3s ease;
+            border-radius: 2px;
+        }
+        .nav-toggle.active span:nth-child(1) {
+            transform: rotate(45deg) translate(5px, 5px);
+        }
+        .nav-toggle.active span:nth-child(2) {
+            opacity: 0;
+        }
+        .nav-toggle.active span:nth-child(3) {
+            transform: rotate(-45deg) translate(5px, -5px);
+        }
+
+        /* ========== SECTION COMMON ========== */
+        .section {
+            padding: 100px 0;
+            position: relative;
+        }
+        .section-label {
+            font-family: var(--font-accent);
+            font-size: 11px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            color: var(--gold);
+            margin-bottom: 12px;
+            display: block;
+        }
+        .section-title {
+            font-family: var(--font-heading);
+            font-size: clamp(32px, 5vw, 52px);
+            font-weight: 700;
+            line-height: 1.1;
+            color: var(--mist-white);
+            margin-bottom: 16px;
+        }
+        .section-title .gold {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .section-desc {
+            font-size: 17px;
+            color: rgba(255, 255, 255, 0.6);
+            max-width: 600px;
+            line-height: 1.8;
+            font-weight: 300;
+        }
+        .section-header {
+            text-align: center;
+            margin-bottom: 60px;
+        }
+        .section-header .section-desc {
+            margin: 0 auto;
+        }
+        .reveal {
+            opacity: 0;
+            transform: translateY(50px);
+            transition: all 0.9s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* ========== BUTTONS ========== */
+        .btn-primary {
+            padding: 14px 44px;
+            background: var(--gold);
+            color: var(--black);
+            font-weight: 600;
+            font-size: 15px;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            font-family: var(--font-body);
+            display: inline-block;
+        }
+        .btn-primary:hover {
+            background: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 12px 50px rgba(201, 168, 76, 0.3);
+        }
+        .btn-secondary {
+            padding: 14px 44px;
+            background: transparent;
+            color: var(--mist-white);
+            font-weight: 500;
+            font-size: 15px;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            cursor: pointer;
+            transition: all 0.4s ease;
+            text-transform: uppercase;
+            font-family: var(--font-body);
+            backdrop-filter: blur(4px);
+            display: inline-block;
+        }
+        .btn-secondary:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+            transform: translateY(-2px);
+            box-shadow: 0 0 40px rgba(201, 168, 76, 0.1);
+        }
+        .btn-sm {
+            padding: 8px 24px;
+            font-size: 12px;
+            border-radius: 40px;
+            border: none;
+            cursor: pointer;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            font-family: var(--font-body);
+            transition: all 0.3s ease;
+        }
+        .btn-sm.outline {
+            background: transparent;
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            color: var(--mist-white);
+        }
+        .btn-sm.outline:hover {
+            border-color: var(--gold);
+            color: var(--gold-light);
+        }
+        .btn-sm.gold {
+            background: var(--gold);
+            color: var(--black);
+        }
+        .btn-sm.gold:hover {
+            background: var(--gold-light);
+            box-shadow: 0 8px 30px var(--gold-glow);
+        }
+
+        /* ========== HERO – DINING ========== */
+        .dining-hero {
+            position: relative;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            overflow: hidden;
+            background: var(--black);
+        }
+        .dining-hero-bg {
+            position: absolute;
+            inset: 0;
+            background: url('https://images.unsplash.com/photo-1555396273-367ea4eb4db5?w=1600&q=80') center/cover no-repeat;
+            transform: scale(1.05);
+            filter: brightness(0.45) saturate(1.1);
+            will-change: transform;
+        }
+        .dining-hero .hero-overlay {
+            position: absolute;
+            inset: 0;
+            background: linear-gradient(180deg, rgba(0, 0, 0, 0.5) 0%, rgba(0, 0, 0, 0.75) 50%, rgba(0, 0, 0, 0.9) 100%);
+        }
+        .mist {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .mist-layer {
+            position: absolute;
+            width: 200%;
+            height: 100%;
+            background: radial-gradient(ellipse at 30% 50%, rgba(255, 255, 255, 0.04) 0%, transparent 60%);
+            animation: mist-drift 22s linear infinite;
+        }
+        .mist-layer:nth-child(2) {
+            animation-duration: 28s;
+            animation-delay: -8s;
+            background: radial-gradient(ellipse at 70% 40%, rgba(255, 255, 255, 0.03) 0%, transparent 50%);
+        }
+        .mist-layer:nth-child(3) {
+            animation-duration: 35s;
+            animation-delay: -16s;
+            background: radial-gradient(ellipse at 50% 70%, rgba(255, 255, 255, 0.025) 0%, transparent 40%);
+        }
+        @keyframes mist-drift {
+            0% {
+                transform: translateX(-10%) scale(1);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateX(10%) scale(1.1);
+                opacity: 1;
+            }
+            100% {
+                transform: translateX(-10%) scale(1);
+                opacity: 0.6;
+            }
+        }
+        .particles {
+            position: absolute;
+            inset: 0;
+            pointer-events: none;
+            overflow: hidden;
+        }
+        .particle {
+            position: absolute;
+            width: 4px;
+            height: 4px;
+            background: var(--gold);
+            border-radius: 50%;
+            box-shadow: 0 0 12px rgba(201, 168, 76, 0.5);
+            animation: float-particle linear infinite;
+            opacity: 0;
+        }
+        @keyframes float-particle {
+            0% {
+                transform: translateY(100vh) scale(0);
+                opacity: 0;
+            }
+            10% {
+                opacity: 1;
+            }
+            90% {
+                opacity: 1;
+            }
+            100% {
+                transform: translateY(-10vh) scale(1);
+                opacity: 0;
+            }
+        }
+        .dining-hero-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            max-width: 900px;
+            padding: 40px 24px;
+        }
+        .hero-badge {
+            font-family: var(--font-accent);
+            font-size: 12px;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            color: var(--gold-light);
+            opacity: 0.7;
+            margin-bottom: 20px;
+            display: inline-block;
+            border: 1px solid rgba(201, 168, 76, 0.2);
+            padding: 6px 24px;
+            border-radius: 40px;
+            backdrop-filter: blur(4px);
+        }
+        .hero-title {
+            font-family: var(--font-heading);
+            font-size: clamp(42px, 10vw, 88px);
+            font-weight: 700;
+            line-height: 1.05;
+            color: var(--mist-white);
+            margin-bottom: 16px;
+            text-shadow: 0 4px 60px rgba(0, 0, 0, 0.5);
+        }
+        .hero-title .gold {
+            background: linear-gradient(135deg, var(--gold-light), var(--gold), var(--gold-light));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+        .hero-sub {
+            font-size: clamp(16px, 2vw, 22px);
+            font-weight: 300;
+            color: rgba(255, 255, 255, 0.8);
+            letter-spacing: 2px;
+            margin-bottom: 36px;
+            font-family: var(--font-body);
+        }
+        .hero-buttons {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 16px;
+            margin-bottom: 50px;
+        }
+        .scroll-indicator {
+            position: absolute;
+            bottom: 30px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 2;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 8px;
+            color: rgba(255, 255, 255, 0.3);
+            font-size: 10px;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            font-family: var(--font-accent);
+            animation: bounce-down 2.4s ease-in-out infinite;
+        }
+        .scroll-indicator .line {
+            width: 1px;
+            height: 40px;
+            background: linear-gradient(180deg, rgba(201, 168, 76, 0.4), transparent);
+        }
+        @keyframes bounce-down {
+            0%,
+            100% {
+                transform: translateX(-50%) translateY(0);
+                opacity: 0.6;
+            }
+            50% {
+                transform: translateX(-50%) translateY(8px);
+                opacity: 1;
+            }
+        }
+
+        /* ========== ABOUT THE RESTAURANT ========== */
+        .about-dining-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .about-dining-image {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+        }
+        .about-dining-image img {
+            width: 100%;
+            height: 480px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .about-dining-image:hover img {
+            transform: scale(1.03);
+        }
+        .about-dining-image .glow-ring {
+            position: absolute;
+            inset: -4px;
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            border-radius: 22px;
+            pointer-events: none;
+        }
+        .about-dining-text h3 {
+            font-family: var(--font-heading);
+            font-size: 34px;
+            color: var(--mist-white);
+            margin-bottom: 16px;
+        }
+        .about-dining-text p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+        .culinary-tags {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 12px;
+            margin-top: 20px;
+        }
+        .culinary-tags span {
+            padding: 6px 20px;
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            border-radius: 40px;
+            font-size: 11px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+        }
+
+        /* ========== MENU / DISHES ========== */
+        .menu-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
+            margin-top: 20px;
+        }
+        .menu-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            overflow: hidden;
+            transition: all 0.5s ease;
+        }
+        .menu-card:hover {
+            border-color: rgba(201, 168, 76, 0.15);
+            transform: translateY(-8px);
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.4);
+        }
+        .menu-card .menu-img {
+            height: 220px;
+            overflow: hidden;
+        }
+        .menu-card .menu-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            transition: transform 0.7s ease;
+        }
+        .menu-card:hover .menu-img img {
+            transform: scale(1.05);
+        }
+        .menu-card .menu-body {
+            padding: 22px 26px 28px;
+        }
+        .menu-card .menu-body .menu-tag {
+            display: inline-block;
+            font-size: 9px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            padding: 3px 14px;
+            border-radius: 40px;
+            margin-bottom: 8px;
+        }
+        .menu-card .menu-body h4 {
+            font-family: var(--font-heading);
+            font-size: 22px;
+            color: var(--mist-white);
+            margin-bottom: 4px;
+        }
+        .menu-card .menu-body p {
+            color: rgba(255, 255, 255, 0.45);
+            font-size: 14px;
+            line-height: 1.7;
+            font-weight: 300;
+        }
+        .menu-card .menu-body .price {
+            font-family: var(--font-accent);
+            font-size: 16px;
+            color: var(--gold);
+            margin-top: 10px;
+            display: block;
+            letter-spacing: 1px;
+        }
+
+        /* ========== BAR & COCKTAILS ========== */
+        .bar-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 60px;
+            align-items: center;
+        }
+        .bar-grid .bar-image {
+            border-radius: 20px;
+            overflow: hidden;
+            position: relative;
+            box-shadow: var(--shadow-soft);
+        }
+        .bar-grid .bar-image img {
+            width: 100%;
+            height: 450px;
+            object-fit: cover;
+            transition: transform 0.8s ease;
+        }
+        .bar-grid .bar-image:hover img {
+            transform: scale(1.03);
+        }
+        .bar-grid .bar-image .glow-ring {
+            position: absolute;
+            inset: -4px;
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            border-radius: 22px;
+            pointer-events: none;
+        }
+        .bar-text h3 {
+            font-family: var(--font-heading);
+            font-size: 34px;
+            color: var(--mist-white);
+            margin-bottom: 16px;
+        }
+        .bar-text p {
+            color: rgba(255, 255, 255, 0.6);
+            font-size: 16px;
+            line-height: 1.9;
+            font-weight: 300;
+            margin-bottom: 16px;
+        }
+
+        .cocktail-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+        .cocktail-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 28px 22px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+        .cocktail-card:hover {
+            border-color: rgba(201, 168, 76, 0.2);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.3);
+            background: rgba(255, 255, 255, 0.04);
+        }
+        .cocktail-card .cocktail-img {
+            width: 80px;
+            height: 80px;
+            border-radius: 50%;
+            object-fit: cover;
+            margin: 0 auto 12px;
+            border: 2px solid rgba(201, 168, 76, 0.15);
+            transition: transform 0.4s ease;
+        }
+        .cocktail-card:hover .cocktail-img {
+            transform: scale(1.06);
+            border-color: var(--gold);
+        }
+        .cocktail-card h5 {
+            font-family: var(--font-heading);
+            font-size: 19px;
+            color: var(--mist-white);
+            margin-bottom: 4px;
+        }
+        .cocktail-card .cocktail-tag {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            color: var(--gold);
+            margin-bottom: 6px;
+            display: block;
+        }
+        .cocktail-card p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+        }
+
+        /* ========== BAR EXPERIENCES ========== */
+        .bar-experiences {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 24px;
+            margin-top: 20px;
+        }
+        .bar-exp-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 30px 24px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+        .bar-exp-card:hover {
+            border-color: rgba(201, 168, 76, 0.15);
+            transform: translateY(-4px);
+            box-shadow: 0 12px 40px rgba(0, 0, 0, 0.3);
+        }
+        .bar-exp-card .emoji {
+            font-size: 32px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .bar-exp-card h5 {
+            font-family: var(--font-heading);
+            font-size: 18px;
+            color: var(--mist-white);
+            margin-bottom: 4px;
+        }
+        .bar-exp-card p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+        }
+
+        /* ========== PRIVATE DINING ========== */
+        .private-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+            gap: 24px;
+            margin-top: 20px;
+        }
+        .private-card {
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 16px;
+            padding: 32px 24px;
+            text-align: center;
+            transition: all 0.4s ease;
+        }
+        .private-card:hover {
+            border-color: rgba(201, 168, 76, 0.15);
+            transform: translateY(-6px);
+            box-shadow: 0 16px 50px rgba(0, 0, 0, 0.3);
+        }
+        .private-card .emoji {
+            font-size: 34px;
+            display: block;
+            margin-bottom: 10px;
+        }
+        .private-card h5 {
+            font-family: var(--font-heading);
+            font-size: 19px;
+            color: var(--mist-white);
+            margin-bottom: 4px;
+        }
+        .private-card p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.4);
+            font-weight: 300;
+        }
+
+        /* ========== RESERVATION WIDGET ========== */
+        .reservation-widget {
+            background: rgba(10, 10, 10, 0.7);
+            backdrop-filter: blur(24px) saturate(1.6);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 20px;
+            padding: 28px 32px;
+            display: flex;
+            flex-wrap: wrap;
+            align-items: flex-end;
+            gap: 16px;
+            max-width: 900px;
+            margin: 0 auto;
+            box-shadow: var(--shadow-soft);
+        }
+        .reservation-widget .field {
+            flex: 1 1 140px;
+            text-align: left;
+        }
+        .reservation-widget .field label {
+            display: block;
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: rgba(255, 255, 255, 0.4);
+            margin-bottom: 6px;
+            font-weight: 500;
+        }
+        .reservation-widget .field input,
+        .reservation-widget .field select {
+            width: 100%;
+            padding: 8px 0 8px 4px;
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+            color: var(--mist-white);
+            font-family: var(--font-body);
+            font-size: 14px;
+            outline: none;
+            transition: border-color 0.3s ease;
+        }
+        .reservation-widget .field input:focus,
+        .reservation-widget .field select:focus {
+            border-color: var(--gold);
+        }
+        .reservation-widget .field input::placeholder {
+            color: rgba(255, 255, 255, 0.25);
+        }
+        .reservation-widget .field select option {
+            background: var(--matte-black);
+            color: var(--mist-white);
+        }
+        .reservation-widget .btn-reserve {
+            padding: 12px 44px;
+            background: var(--gold);
+            color: var(--black);
+            font-weight: 700;
+            font-size: 14px;
+            letter-spacing: 1px;
+            border-radius: 50px;
+            border: none;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            text-transform: uppercase;
+            font-family: var(--font-body);
+            flex: 0 0 auto;
+        }
+        .reservation-widget .btn-reserve:hover {
+            background: var(--gold-light);
+            transform: scale(1.03);
+            box-shadow: 0 8px 40px rgba(201, 168, 76, 0.3);
+        }
+
+        /* ========== TESTIMONIALS ========== */
+        .testimonial-carousel {
+            display: flex;
+            gap: 30px;
+            overflow-x: auto;
+            padding: 10px 4px 30px;
+            scroll-snap-type: x mandatory;
+            -webkit-overflow-scrolling: touch;
+            scrollbar-width: none;
+        }
+        .testimonial-carousel::-webkit-scrollbar {
+            display: none;
+        }
+        .testimonial-card {
+            flex: 0 0 340px;
+            background: rgba(255, 255, 255, 0.02);
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            border-radius: 20px;
+            padding: 30px 28px;
+            scroll-snap-align: start;
+            transition: all 0.4s ease;
+        }
+        .testimonial-card:hover {
+            border-color: rgba(201, 168, 76, 0.15);
+            transform: translateY(-4px);
+        }
+        .testimonial-card .stars {
+            color: var(--gold);
+            font-size: 16px;
+            letter-spacing: 2px;
+            margin-bottom: 12px;
+        }
+        .testimonial-card blockquote {
+            font-size: 15px;
+            line-height: 1.8;
+            color: rgba(255, 255, 255, 0.7);
+            font-weight: 300;
+            font-style: italic;
+            margin-bottom: 16px;
+        }
+        .testimonial-card .author {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+        }
+        .testimonial-card .author .avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: var(--gold);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-weight: 600;
+            font-size: 18px;
+            color: var(--black);
+        }
+        .testimonial-card .author .name {
+            font-weight: 500;
+            color: var(--mist-white);
+            font-size: 15px;
+        }
+        .testimonial-card .author .place {
+            font-size: 12px;
+            color: rgba(255, 255, 255, 0.3);
+        }
+
+        /* ========== CONTACT ========== */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 50px;
+        }
+        .contact-info .info-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 16px;
+            margin-bottom: 24px;
+        }
+        .contact-info .info-item .icon {
+            font-size: 22px;
+            min-width: 40px;
+            color: var(--gold);
+        }
+        .contact-info .info-item h6 {
+            font-size: 14px;
+            color: var(--mist-white);
+            font-weight: 500;
+            margin-bottom: 2px;
+        }
+        .contact-info .info-item p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.5);
+            font-weight: 300;
+        }
+        .contact-form input,
+        .contact-form textarea {
+            width: 100%;
+            padding: 14px 18px;
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.06);
+            border-radius: 12px;
+            color: var(--mist-white);
+            font-family: var(--font-body);
+            font-size: 14px;
+            transition: all 0.3s ease;
+            margin-bottom: 16px;
+            outline: none;
+        }
+        .contact-form input:focus,
+        .contact-form textarea:focus {
+            border-color: var(--gold);
+            background: rgba(255, 255, 255, 0.05);
+            box-shadow: 0 0 30px rgba(201, 168, 76, 0.05);
+        }
+        .contact-form textarea {
+            min-height: 120px;
+            resize: vertical;
+        }
+        .contact-form .btn-primary {
+            width: 100%;
+        }
+        .map-placeholder {
+            margin-top: 24px;
+            border-radius: 16px;
+            overflow: hidden;
+            border: 1px solid rgba(255, 255, 255, 0.04);
+            height: 200px;
+            background: rgba(255, 255, 255, 0.02);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: rgba(255, 255, 255, 0.15);
+            font-size: 14px;
+            letter-spacing: 1px;
+        }
+
+        /* ========== FOOTER ========== */
+        .footer {
+            padding: 60px 0 30px;
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            background: rgba(0, 0, 0, 0.3);
+        }
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px;
+            margin-bottom: 40px;
+        }
+        .footer-brand img {
+            width: 56px;
+            height: 56px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 1px solid rgba(201, 168, 76, 0.15);
+            margin-bottom: 12px;
+        }
+        .footer-brand h4 {
+            font-family: var(--font-accent);
+            font-size: 20px;
+            color: var(--gold-light);
+            letter-spacing: 1px;
+        }
+        .footer-brand p {
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 300;
+            margin-top: 6px;
+        }
+        .footer-col h6 {
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            color: var(--gold);
+            margin-bottom: 16px;
+        }
+        .footer-col a {
+            display: block;
+            font-size: 14px;
+            color: rgba(255, 255, 255, 0.3);
+            font-weight: 300;
+            margin-bottom: 8px;
+            transition: color 0.3s ease;
+            cursor: pointer;
+        }
+        .footer-col a:hover {
+            color: var(--gold-light);
+        }
+        .footer-bottom {
+            border-top: 1px solid rgba(255, 255, 255, 0.04);
+            padding-top: 24px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            flex-wrap: wrap;
+            gap: 16px;
+        }
+        .footer-bottom p {
+            font-size: 13px;
+            color: rgba(255, 255, 255, 0.2);
+            font-weight: 300;
+        }
+        .footer-socials {
+            display: flex;
+            gap: 18px;
+        }
+        .footer-socials a {
+            color: rgba(255, 255, 255, 0.2);
+            transition: color 0.3s ease;
+            font-size: 18px;
+        }
+        .footer-socials a:hover {
+            color: var(--gold);
+        }
+
+        /* ========== RESPONSIVE ========== */
+        @media (max-width: 1024px) {
+            .about-dining-grid,
+            .bar-grid {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+            .about-dining-image img,
+            .bar-grid .bar-image img {
+                height: 340px;
+            }
+            .contact-grid {
+                grid-template-columns: 1fr;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .bar-experiences {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        @media (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 70%;
+                max-width: 340px;
+                height: 100vh;
+                background: rgba(10, 10, 10, 0.97);
+                backdrop-filter: blur(24px);
+                flex-direction: column;
+                justify-content: center;
+                gap: 24px;
+                padding: 40px;
+                transition: right 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+                border-left: 1px solid rgba(201, 168, 76, 0.05);
+            }
+            .nav-links.open {
+                right: 0;
+            }
+            .nav-toggle {
+                display: flex;
+                z-index: 1001;
+            }
+            .nav-cta {
+                padding: 10px 28px;
+            }
+            .reservation-widget {
+                flex-direction: column;
+                gap: 12px;
+                padding: 20px;
+            }
+            .reservation-widget .field {
+                flex: 1 1 auto;
+                width: 100%;
+            }
+            .reservation-widget .btn-reserve {
+                width: 100%;
+            }
+            .hero-title {
+                font-size: 38px;
+            }
+            .section {
+                padding: 60px 0;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .cocktail-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .bar-experiences {
+                grid-template-columns: 1fr;
+            }
+            .private-grid {
+                grid-template-columns: 1fr 1fr;
+            }
+            .testimonial-card {
+                flex: 0 0 280px;
+            }
+            .footer-grid {
+                grid-template-columns: 1fr;
+                gap: 30px;
+            }
+            #cursor-glow {
+                display: none;
+            }
+            .dining-hero {
+                min-height: 80vh;
+            }
+        }
+        @media (max-width: 480px) {
+            .hero-title {
+                font-size: 30px;
+            }
+            .hero-buttons .btn-primary,
+            .hero-buttons .btn-secondary {
+                padding: 12px 28px;
+                font-size: 13px;
+            }
+            .menu-grid {
+                grid-template-columns: 1fr;
+            }
+            .cocktail-grid {
+                grid-template-columns: 1fr;
+            }
+            .private-grid {
+                grid-template-columns: 1fr;
+            }
+            .about-dining-image img,
+            .bar-grid .bar-image img {
+                height: 220px;
+            }
+            .about-dining-text h3,
+            .bar-text h3 {
+                font-size: 26px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+    <!-- ========== LOADING SCREEN ========== -->
+    <div id="loader" role="status" aria-label="Loading">
+        <div class="loader-logo"></div>
+        <div class="loader-text">Crafting Himalayan Flavours</div>
+        <div class="loader-bar-track">
+            <div class="loader-bar-fill" id="loaderFill"></div>
+        </div>
+        <div class="loader-percent" id="loaderPercent">0%</div>
+    </div>
+
+    <!-- ========== CURSOR GLOW ========== -->
+    <div id="cursor-glow"></div>
+
+    <!-- ========== NAVBAR ========== -->
+    <nav class="navbar" id="navbar" role="navigation" aria-label="Main navigation">
+        <div class="container">
+            <div class="nav-logo" id="navLogo">
+                <img src="https://i.pinimg.com/736x/44/86/a1/4486a1096891eb15f0834aad140df40e.jpg" alt="Simma Hotel Logo" loading="lazy">
+                <span>SIMMA</span>
+            </div>
+            <ul class="nav-links" id="navLinks">
+                <li><a class="nav-link" data-page="home">Hotel</a></li>
+                <li><a class="nav-link active" data-page="dining">Dining</a></li>
+                <li><a class="nav-link" data-page="menu">Menu</a></li>
+                <li><a class="nav-link" data-page="bar">Bar</a></li>
+                <li><a class="nav-link" data-page="contact">Contact</a></li>
+                <li><a href="#reservation" class="nav-cta" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Reserve a Table</a></li>
+            </ul>
+            <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false">
+                <span></span><span></span><span></span>
+            </button>
+        </div>
+    </nav>
+
+    <!-- ============================================ -->
+    <!-- DINING PAGE – SINGLE PAGE EXPERIENCE         -->
+    <!-- ============================================ -->
+    <div class="page-view active" id="page-dining">
+
+        <!-- ========== HERO ========== -->
+        <section class="dining-hero" id="home">
+            <div class="dining-hero-bg" id="heroBg"></div>
+            <div class="hero-overlay"></div>
+            <div class="mist" aria-hidden="true">
+                <div class="mist-layer"></div>
+                <div class="mist-layer"></div>
+                <div class="mist-layer"></div>
+            </div>
+            <div class="particles" id="particles" aria-hidden="true"></div>
+            <div class="dining-hero-content">
+                <span class="hero-badge">✦ Himalayan Gastronomy</span>
+                <h1 class="hero-title">Dining at <span class="gold">Simma</span></h1>
+                <p class="hero-sub">Where the flavours of the mountains meet world-class craftsmanship</p>
+                <div class="hero-buttons">
+                    <a href="#reservation" class="btn-primary" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Reserve a Table</a>
+                    <a href="#menu" class="btn-secondary" onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Explore the Menu</a>
+                </div>
+            </div>
+            <div class="scroll-indicator" aria-hidden="true"><span>Scroll</span><div class="line"></div></div>
+        </section>
+
+        <!-- ========== ABOUT THE RESTAURANT ========== -->
+        <section class="section" id="about">
+            <div class="container">
+                <div class="about-dining-grid">
+                    <div class="about-dining-image reveal">
+                        <img src="https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?w=1200&q=80" alt="The Himalayan Table restaurant interior" loading="lazy">
+                        <div class="glow-ring"></div>
+                    </div>
+                    <div class="about-dining-text reveal">
+                        <span class="section-label">The Himalayan Table</span>
+                        <h3>A Culinary Journey Through the <span class="gold">Mountains</span></h3>
+                        <p>Perched in the heart of Darjeeling, The Himalayan Table is more than a restaurant — it is a celebration of the region's rich culinary heritage. Our chefs draw inspiration from the misty hills, crafting dishes that honour traditional recipes while embracing contemporary techniques.</p>
+                        <p>Every ingredient is thoughtfully sourced — from the freshest local produce to the finest Darjeeling tea leaves. The panoramic windows frame the majestic Kanchenjunga, making every meal a feast for the senses.</p>
+                        <div class="culinary-tags">
+                            <span>✦ Indian Cuisine</span>
+                            <span>✦ Continental</span>
+                            <span>✦ Himalayan Flavours</span>
+                            <span>✦ Farm-to-Table</span>
+                        </div>
+                        <div style="margin-top:24px;">
+                            <a href="#reservation" class="btn-primary" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Book a Table</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== MENU – SIGNATURE DISHES ========== -->
+        <section class="section" id="menu" style="background: rgba(0,0,0,0.2);">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Chef's Selection</span>
+                    <h2 class="section-title">Signature <span class="gold">Dishes</span></h2>
+                    <p class="section-desc">A taste of the Himalayas — each dish tells a story of the mountains.</p>
+                </div>
+                <div class="menu-grid">
+                    <div class="menu-card reveal">
+                        <div class="menu-img"><img src="https://images.unsplash.com/photo-1544025162-d76694265947?w=800&q=80" alt="Kanchenjunga Platter" loading="lazy"></div>
+                        <div class="menu-body">
+                            <span class="menu-tag">✦ Signature</span>
+                            <h4>Kanchenjunga Platter</h4>
+                            <p>A curated selection of Himalayan delicacies — grilled trout, steamed momos, seasonal vegetables, and wild rice from the hills.</p>
+                            <span class="price">₹1,850</span>
+                        </div>
+                    </div>
+                    <div class="menu-card reveal">
+                        <div class="menu-img"><img src="https://images.unsplash.com/photo-1555939594-58d7cb561ad1?w=800&q=80" alt="Darjeeling Tea Infusion" loading="lazy"></div>
+                        <div class="menu-body">
+                            <span class="menu-tag">✦ Chef's Special</span>
+                            <h4>Darjeeling Tea Infusion</h4>
+                            <p>Slow-cooked lamb infused with first-flush Darjeeling tea, served with seasonal greens and aromatic wild rice.</p>
+                            <span class="price">₹2,150</span>
+                        </div>
+                    </div>
+                    <div class="menu-card reveal">
+                        <div class="menu-img"><img src="https://images.unsplash.com/photo-1587314168485-3236d6710814?w=800&q=80" alt="Himalayan Honey Cake" loading="lazy"></div>
+                        <div class="menu-body">
+                            <span class="menu-tag">✦ Dessert</span>
+                            <h4>Himalayan Honey Cake</h4>
+                            <p>A delicate honey-infused cake with a hint of cardamom, served with vanilla bean ice cream and local forest berries.</p>
+                            <span class="price">₹850</span>
+                        </div>
+                    </div>
+                    <div class="menu-card reveal">
+                        <div class="menu-img"><img src="https://images.unsplash.com/photo-1565299624946-b28f40a0ae38?w=800&q=80" alt="Mountain Harvest Pizza" loading="lazy"></div>
+                        <div class="menu-body">
+                            <span class="menu-tag">✦ Wood-Fired</span>
+                            <h4>Mountain Harvest Pizza</h4>
+                            <p>Hand-stretched sourdough with wild mushrooms, local goat cheese, caramelised onions, and a drizzle of truffle oil.</p>
+                            <span class="price">₹1,450</span>
+                        </div>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:40px;">
+                    <a href="#reservation" class="btn-secondary" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">View Full Menu →</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== THE BAR ========== -->
+        <section class="section" id="bar">
+            <div class="container">
+                <div class="bar-grid">
+                    <div class="bar-text reveal">
+                        <span class="section-label">The Golden Bar</span>
+                        <h3>Where Mist Meets <span class="gold">Mixology</span></h3>
+                        <p>Step into a world of understated luxury at The Golden Bar. Our bartenders are artists, crafting cocktails that are as visually stunning as they are delicious. From rare single malts to signature creations inspired by the Himalayas, every drink tells a story.</p>
+                        <p>The warm ambiance, soft lighting, and panoramic mountain views create the perfect setting for an evening of conversation and celebration.</p>
+                        <div class="culinary-tags">
+                            <span>✦ Signature Cocktails</span>
+                            <span>✦ Rare Single Malts</span>
+                            <span>✦ Lounge Nights</span>
+                        </div>
+                        <div style="margin-top:24px;">
+                            <a href="#reservation" class="btn-primary" onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Book a Table</a>
+                        </div>
+                    </div>
+                    <div class="bar-image reveal">
+                        <img src="https://images.unsplash.com/photo-1470337458703-46ad1756a187?w=1200&q=80" alt="The Golden Bar interior" loading="lazy">
+                        <div class="glow-ring"></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== SIGNATURE COCKTAILS ========== -->
+        <section class="section" style="background: rgba(0,0,0,0.2);">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">The Golden Bar</span>
+                    <h2 class="section-title">Signature <span class="gold">Cocktails</span></h2>
+                    <p class="section-desc">Inspired by the mountains, crafted with precision.</p>
+                </div>
+                <div class="cocktail-grid">
+                    <div class="cocktail-card reveal">
+                        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80" alt="Mist of Kanchenjunga" class="cocktail-img" loading="lazy">
+                        <h5>Mist of Kanchenjunga</h5>
+                        <span class="cocktail-tag">✦ Signature</span>
+                        <p>Gin, elderflower, fresh lime, and a hint of Himalayan mint</p>
+                    </div>
+                    <div class="cocktail-card reveal">
+                        <img src="https://images.unsplash.com/photo-1514362545857-3bc16c4c7d1b?w=400&q=80&h=400&fit=crop" alt="Golden Hour" class="cocktail-img" loading="lazy">
+                        <h5>Golden Hour</h5>
+                        <span class="cocktail-tag">✦ Premium</span>
+                        <p>Single malt whisky, honey, and a touch of Darjeeling tea</p>
+                    </div>
+                    <div class="cocktail-card reveal">
+                        <img src="https://images.unsplash.com/photo-1536935338788-846bb9981813?w=400&q=80" alt="Tea Garden Spritz" class="cocktail-img" loading="lazy">
+                        <h5>Tea Garden Spritz</h5>
+                        <span class="cocktail-tag">✦ Refreshing</span>
+                        <p>Vodka, green tea syrup, prosecco, and fresh mint</p>
+                    </div>
+                    <div class="cocktail-card reveal">
+                        <img src="https://images.unsplash.com/photo-1551024709-8f23befc6f87?w=400&q=80" alt="Himalayan Sunset" class="cocktail-img" loading="lazy">
+                        <h5>Himalayan Sunset</h5>
+                        <span class="cocktail-tag">✦ Classic</span>
+                        <p>Rum, orange juice, grenadine, and a splash of soda</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== BAR EXPERIENCES ========== -->
+        <section class="section">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Experiences</span>
+                    <h2 class="section-title">Bar <span class="gold">Moments</span></h2>
+                    <p class="section-desc">From intimate evenings to lively gatherings — the bar is the heart of Simma.</p>
+                </div>
+                <div class="bar-experiences">
+                    <div class="bar-exp-card reveal">
+                        <span class="emoji">🌅</span>
+                        <h5>Sunset Lounge</h5>
+                        <p>Witness the golden hour with a signature cocktail in hand</p>
+                    </div>
+                    <div class="bar-exp-card reveal">
+                        <span class="emoji">🎵</span>
+                        <h5>Live Jazz Nights</h5>
+                        <p>Unwind to soulful melodies every weekend evening</p>
+                    </div>
+                    <div class="bar-exp-card reveal">
+                        <span class="emoji">🥂</span>
+                        <h5>Private Gatherings</h5>
+                        <p>Exclusive bar experiences for intimate celebrations</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== PRIVATE DINING & EVENTS ========== -->
+        <section class="section" style="background: rgba(0,0,0,0.2);">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Private Dining</span>
+                    <h2 class="section-title">Celebrations &amp; <span class="gold">Gatherings</span></h2>
+                    <p class="section-desc">From intimate dinners to grand celebrations — we craft every event with elegance.</p>
+                </div>
+                <div class="private-grid">
+                    <div class="private-card reveal">
+                        <span class="emoji">💍</span>
+                        <h5>Anniversaries</h5>
+                        <p>Romantic setups with Himalayan views and custom menus</p>
+                    </div>
+                    <div class="private-card reveal">
+                        <span class="emoji">🎂</span>
+                        <h5>Birthday Parties</h5>
+                        <p>Celebrate with a personalised menu and stunning mountain backdrops</p>
+                    </div>
+                    <div class="private-card reveal">
+                        <span class="emoji">💼</span>
+                        <h5>Corporate Events</h5>
+                        <p>State-of-the-art facilities in a serene setting for business gatherings</p>
+                    </div>
+                    <div class="private-card reveal">
+                        <span class="emoji">🍽️</span>
+                        <h5>Chef's Table</h5>
+                        <p>An exclusive multi-course tasting menu curated by our head chef</p>
+                    </div>
+                </div>
+                <div style="text-align:center;margin-top:40px;">
+                    <a href="#contact" class="btn-primary" onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Plan Your Event</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== RESERVATION WIDGET ========== -->
+        <section class="section" id="reservation" style="background: rgba(0,0,0,0.3);">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Reserve Your Experience</span>
+                    <h2 class="section-title">Secure Your <span class="gold">Table</span></h2>
+                    <p class="section-desc">Experience the finest dining in Darjeeling. Book your table for an unforgettable culinary journey.</p>
+                </div>
+                <div class="reservation-widget">
+                    <div class="field">
+                        <label for="dining-date">Date</label>
+                        <input type="date" id="dining-date" value="2026-07-15">
+                    </div>
+                    <div class="field">
+                        <label for="dining-time">Time</label>
+                        <select id="dining-time">
+                            <option value="18:00">6:00 PM</option>
+                            <option value="18:30">6:30 PM</option>
+                            <option value="19:00" selected>7:00 PM</option>
+                            <option value="19:30">7:30 PM</option>
+                            <option value="20:00">8:00 PM</option>
+                            <option value="20:30">8:30 PM</option>
+                            <option value="21:00">9:00 PM</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="dining-guests">Guests</label>
+                        <select id="dining-guests">
+                            <option value="2">2 Guests</option>
+                            <option value="3">3 Guests</option>
+                            <option value="4" selected>4 Guests</option>
+                            <option value="6">6 Guests</option>
+                            <option value="8">8 Guests</option>
+                            <option value="10">10+ Guests</option>
+                        </select>
+                    </div>
+                    <div class="field">
+                        <label for="dining-occasion">Occasion</label>
+                        <select id="dining-occasion">
+                            <option value="dinner">Dinner</option>
+                            <option value="lunch">Lunch</option>
+                            <option value="celebration">Celebration</option>
+                            <option value="private">Private Event</option>
+                        </select>
+                    </div>
+                    <button class="btn-reserve" onclick="handleReservation()">Reserve Now</button>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== TESTIMONIALS ========== -->
+        <section class="section" style="background: rgba(0,0,0,0.15);">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Guest Reviews</span>
+                    <h2 class="section-title">Culinary <span class="gold">Stories</span></h2>
+                    <p class="section-desc">What our guests say about their dining experience at Simma.</p>
+                </div>
+                <div class="testimonial-carousel" id="testimonialCarousel">
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <blockquote>"The Himalayan Table is a culinary masterpiece. Every dish was a celebration of local flavours, and the view was simply breathtaking."</blockquote>
+                        <div class="author">
+                            <div class="avatar">M</div>
+                            <div><div class="name">Maya &amp; David</div><div class="place">London</div></div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <blockquote>"The Golden Bar is the perfect place to unwind. The cocktails are innovative, and the staff are incredibly knowledgeable."</blockquote>
+                        <div class="author">
+                            <div class="avatar">A</div>
+                            <div><div class="name">Aarav Singh</div><div class="place">Delhi</div></div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <blockquote>"We celebrated our anniversary here, and it was magical. The private dining setup, the food, the service — everything was perfect."</blockquote>
+                        <div class="author">
+                            <div class="avatar">P</div>
+                            <div><div class="name">Priya &amp; Rohan</div><div class="place">Mumbai</div></div>
+                        </div>
+                    </div>
+                    <div class="testimonial-card">
+                        <div class="stars">★★★★★</div>
+                        <blockquote>"The tea-infused lamb is one of the best dishes I've ever had. The bar's selection of single malts is world-class."</blockquote>
+                        <div class="author">
+                            <div class="avatar">J</div>
+                            <div><div class="name">James O'Brien</div><div class="place">Sydney</div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- ========== CONTACT ========== -->
+        <section class="section" id="contact" style="background: rgba(0,0,0,0.3);">
+            <div class="container">
+                <div class="section-header reveal">
+                    <span class="section-label">Contact</span>
+                    <h2 class="section-title">Get in <span class="gold">Touch</span></h2>
+                    <p class="section-desc">We're here to make your dining experience unforgettable.</p>
+                </div>
+                <div class="contact-grid">
+                    <div class="contact-info reveal">
+                        <div class="info-item">
+                            <span class="icon">📍</span>
+                            <div>
+                                <h6>Address</h6>
+                                <p>Darjeeling - Jorethang Rd, Chauk Bazaar, Darjeeling, West Bengal 734101</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="icon">📞</span>
+                            <div>
+                                <h6>Phone</h6>
+                                <p>+91 7965658188</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="icon">✉️</span>
+                            <div>
+                                <h6>Email</h6>
+                                <p>simmaxhotel@gmail.com</p>
+                            </div>
+                        </div>
+                        <div class="info-item">
+                            <span class="icon">💬</span>
+                            <div>
+                                <h6>WhatsApp</h6>
+                                <p><a href="https://wa.me/917965658188" style="color:var(--gold);">Chat with us</a></p>
+                            </div>
+                        </div>
+                        <div class="map-placeholder">📍 Google Map — Darjeeling, West Bengal</div>
+                    </div>
+                    <div class="contact-form reveal">
+                        <form id="contactForm" onsubmit="handleContact(event)">
+                            <input type="text" placeholder="Full Name" required>
+                            <input type="email" placeholder="Email Address" required>
+                            <input type="tel" placeholder="Phone Number">
+                            <textarea placeholder="Tell us about your dining preferences or event..."></textarea>
+                            <button type="submit" class="btn-primary">Send Message</button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+    </div>
+
+    <!-- ========== FOOTER ========== -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-grid">
+                <div class="footer-brand">
+                    <img src="https://i.pinimg.com/736x/44/86/a1/4486a1096891eb15f0834aad140df40e.jpg" alt="Simma Hotel Logo" loading="lazy">
+                    <h4>SIMMA HOTEL</h4>
+                    <p>Restaurant &amp; Bar · Darjeeling, India</p>
+                </div>
+                <div class="footer-col">
+                    <h6>Quick Links</h6>
+                    <a onclick="document.getElementById('about').scrollIntoView({behavior:'smooth'})">About</a>
+                    <a onclick="document.getElementById('menu').scrollIntoView({behavior:'smooth'})">Menu</a>
+                    <a onclick="document.getElementById('bar').scrollIntoView({behavior:'smooth'})">Bar</a>
+                    <a onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Reservations</a>
+                </div>
+                <div class="footer-col">
+                    <h6>Support</h6>
+                    <a onclick="document.getElementById('contact').scrollIntoView({behavior:'smooth'})">Contact</a>
+                    <a onclick="document.getElementById('reservation').scrollIntoView({behavior:'smooth'})">Book a Table</a>
+                    <a href="#">Private Events</a>
+                    <a href="#">Gallery</a>
+                </div>
+                <div class="footer-col">
+                    <h6>Connect</h6>
+                    <a href="#">Instagram</a>
+                    <a href="#">Facebook</a>
+                    <a href="#">YouTube</a>
+                    <a href="#">TripAdvisor</a>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>&copy; 2026 Simma Hotel Restaurant &amp; Bar. Designed for luxury hospitality.</p>
+                <div class="footer-socials">
+                    <a href="#" aria-label="Instagram">📷</a>
+                    <a href="#" aria-label="Facebook">👍</a>
+                    <a href="#" aria-label="YouTube">▶️</a>
+                    <a href="#" aria-label="TripAdvisor">✈️</a>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- ========== JAVASCRIPT ========== -->
+    <script>
+        // ============================================
+        // LOADING SCREEN
+        // ============================================
+        (function loader() {
+            const fill = document.getElementById('loaderFill');
+            const percent = document.getElementById('loaderPercent');
+            let progress = 0;
+            const interval = setInterval(() => {
+                progress += Math.random() * 8 + 2;
+                if (progress >= 100) {
+                    progress = 100;
+                    clearInterval(interval);
+                    document.getElementById('loader').classList.add('hidden');
+                    setTimeout(initParticles, 400);
+                    initPage();
+                }
+                fill.style.width = progress + '%';
+                percent.textContent = Math.min(Math.round(progress), 100) + '%';
+            }, 120);
+        })();
+
+        // ============================================
+        // PAGE SWITCHING (for nav links)
+        // ============================================
+        function switchPage(page) {
+            // For this dining page, we only have one page view.
+            // But we handle nav link active states and smooth scroll.
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.toggle('active', link.dataset.page === page);
+            });
+            if (page === 'home') {
+                window.location.href = '#'; // would link to hotel homepage in production
+            } else if (page === 'dining') {
+                document.getElementById('page-dining').scrollIntoView({ behavior: 'smooth' });
+            } else if (page === 'menu') {
+                document.getElementById('menu').scrollIntoView({ behavior: 'smooth' });
+            } else if (page === 'bar') {
+                document.getElementById('bar').scrollIntoView({ behavior: 'smooth' });
+            } else if (page === 'contact') {
+                document.getElementById('contact').scrollIntoView({ behavior: 'smooth' });
+            }
+            document.getElementById('navLinks').classList.remove('open');
+            document.getElementById('navToggle').classList.remove('active');
+            document.getElementById('navToggle').setAttribute('aria-expanded', 'false');
+        }
+
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                switchPage(this.dataset.page);
+            });
+        });
+
+        document.getElementById('navLogo').addEventListener('click', () => {
+            window.location.href = '#';
+        });
+
+        // ============================================
+        // CURSOR GLOW
+        // ============================================
+        (function cursor() {
+            const glow = document.getElementById('cursor-glow');
+            if (!glow) return;
+            let x = 0,
+                y = 0,
+                targetX = 0,
+                targetY = 0;
+            document.addEventListener('mousemove', (e) => {
+                targetX = e.clientX;
+                targetY = e.clientY;
+            });
+
+            function animateCursor() {
+                x += (targetX - x) * 0.06;
+                y += (targetY - y) * 0.06;
+                glow.style.left = x + 'px';
+                glow.style.top = y + 'px';
+                requestAnimationFrame(animateCursor);
+            }
+            animateCursor();
+            if ('ontouchstart' in window) glow.style.display = 'none';
+        })();
+
+        // ============================================
+        // NAVBAR SCROLL
+        // ============================================
+        (function navbar() {
+            const nav = document.getElementById('navbar');
+            const toggle = document.getElementById('navToggle');
+            const links = document.getElementById('navLinks');
+            let lastScroll = 0;
+            let ticking = false;
+
+            window.addEventListener('scroll', () => {
+                if (!ticking) {
+                    requestAnimationFrame(() => {
+                        const current = window.scrollY;
+                        if (current > 80) {
+                            nav.classList.add('scrolled');
+                            if (current > lastScroll && current > 120) {
+                                nav.classList.add('hidden-nav');
+                            } else {
+                                nav.classList.remove('hidden-nav');
+                            }
+                        } else {
+                            nav.classList.remove('scrolled');
+                            nav.classList.remove('hidden-nav');
+                        }
+                        lastScroll = current;
+                        ticking = false;
+                    });
+                    ticking = true;
+                }
+            });
+
+            toggle.addEventListener('click', () => {
+                const open = links.classList.toggle('open');
+                toggle.classList.toggle('active');
+                toggle.setAttribute('aria-expanded', open);
+            });
+
+            links.querySelectorAll('a').forEach(link => {
+                link.addEventListener('click', () => {
+                    links.classList.remove('open');
+                    toggle.classList.remove('active');
+                    toggle.setAttribute('aria-expanded', 'false');
+                });
+            });
+        })();
+
+        // ============================================
+        // HERO PARALLAX
+        // ============================================
+        (function parallax() {
+            const bg = document.getElementById('heroBg');
+            if (!bg) return;
+            window.addEventListener('scroll', () => {
+                const offset = window.scrollY;
+                bg.style.transform = `scale(1.05) translateY(${offset * 0.15}px)`;
+            });
+        })();
+
+        // ============================================
+        // PARTICLES
+        // ============================================
+        function initParticles() {
+            const container = document.getElementById('particles');
+            if (!container) return;
+            const count = 50;
+            for (let i = 0; i < count; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 4 + 2;
+                p.style.width = size + 'px';
+                p.style.height = size + 'px';
+                p.style.left = Math.random() * 100 + '%';
+                p.style.animationDuration = (Math.random() * 20 + 15) + 's';
+                p.style.animationDelay = (Math.random() * 20) + 's';
+                container.appendChild(p);
+            }
+        }
+
+        // ============================================
+        // SCROLL REVEAL
+        // ============================================
+        (function reveal() {
+            const items = document.querySelectorAll('.reveal');
+            if (!items.length) return;
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.12, rootMargin: '0px 0px -30px 0px' });
+            items.forEach(el => observer.observe(el));
+        })();
+
+        // ============================================
+        // RESERVATION HANDLER
+        // ============================================
+        function handleReservation() {
+            const date = document.getElementById('dining-date')?.value || '2026-07-15';
+            const time = document.getElementById('dining-time')?.value || '19:00';
+            const guests = document.getElementById('dining-guests')?.value || '4';
+            const occasion = document.getElementById('dining-occasion')?.value || 'dinner';
+            const occasionMap = {
+                dinner: 'Dinner',
+                lunch: 'Lunch',
+                celebration: 'Celebration',
+                private: 'Private Event'
+            };
+            alert(
+                `✨ Table Reservation\n\nDate: ${date}\nTime: ${time}\nGuests: ${guests}\nOccasion: ${occasionMap[occasion] || occasion}\n\nWe look forward to welcoming you to Simma Hotel Restaurant & Bar.`);
+        }
+
+        // ============================================
+        // CONTACT FORM
+        // ============================================
+        function handleContact(e) {
+            e.preventDefault();
+            alert(
+                '✨ Thank you for reaching out!\n\nWe have received your message and will get back to you within 24 hours.\n\n— Simma Hotel Team');
+            e.target.reset();
+        }
+
+        // ============================================
+        // TESTIMONIAL CAROUSEL
+        // ============================================
+        (function initCarousel() {
+            const carousel = document.getElementById('testimonialCarousel');
+            if (!carousel) return;
+            let scrollInterval;
+            let isHovering = false;
+
+            function startAutoScroll() {
+                if (scrollInterval) clearInterval(scrollInterval);
+                scrollInterval = setInterval(() => {
+                    if (isHovering) return;
+                    const maxScroll = carousel.scrollWidth - carousel.clientWidth;
+                    if (carousel.scrollLeft >= maxScroll - 20) {
+                        carousel.scrollTo({ left: 0, behavior: 'smooth' });
+                    } else {
+                        carousel.scrollBy({ left: 340, behavior: 'smooth' });
+                    }
+                }, 4000);
+            }
+
+            carousel.addEventListener('mouseenter', () => { isHovering = true; });
+            carousel.addEventListener('mouseleave', () => { isHovering = false; });
+            setTimeout(startAutoScroll, 2000);
+            document.addEventListener('visibilitychange', () => {
+                if (!document.hidden) setTimeout(startAutoScroll, 1000);
+            });
+        })();
+
+        // ============================================
+        // INIT PAGE
+        // ============================================
+        function initPage() {
+            // Ensure dining page is active
+            document.querySelectorAll('.page-view').forEach(el => el.classList.remove('active'));
+            const diningPage = document.getElementById('page-dining');
+            if (diningPage) diningPage.classList.add('active');
+
+            document.querySelectorAll('.nav-link').forEach(link => {
+                link.classList.toggle('active', link.dataset.page === 'dining');
+            });
+        }
+
+        console.log('%c✦ SIMMA HOTEL · DINING ✦', 'font-size:24px; font-weight:700; color:#c9a84c;');
+        console.log('%cHimalayan Cuisine · Crafted with Passion', 'font-size:14px; color:#e8d5a3;');
+        console.log('%cDesigned for the discerning palate.', 'font-size:12px; color:rgba(255,255,255,0.3);');
+    </script>
+
+</body>
+</html>
